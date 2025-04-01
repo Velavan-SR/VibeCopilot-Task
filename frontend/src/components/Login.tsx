@@ -8,6 +8,7 @@ import {
   Typography,
   Paper,
   Alert,
+  Divider,
 } from '@mui/material';
 import axios from 'axios';
 
@@ -26,8 +27,8 @@ const Login = () => {
       });
       localStorage.setItem('token', response.data.access_token);
       navigate('/services');
-    } catch (err) {
-      setError('Invalid credentials');
+    } catch {
+      setError('Invalid credentials. Please use the test credentials shown below.');
     }
   };
 
@@ -59,7 +60,7 @@ const Login = () => {
               {error}
             </Alert>
           )}
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
             <TextField
               margin="normal"
               required
@@ -92,6 +93,18 @@ const Login = () => {
             >
               Sign In
             </Button>
+          </Box>
+          <Divider sx={{ width: '100%', my: 2 }} />
+          <Box sx={{ width: '100%', textAlign: 'center' }}>
+            <Typography variant="subtitle2" color="text.secondary">
+              Test Credentials:
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Email: sham@gmail.com
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Password: 123456
+            </Typography>
           </Box>
         </Paper>
       </Box>
